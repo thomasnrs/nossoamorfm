@@ -1,0 +1,18 @@
+# Arquivos grandes de banner
+assets/banner.gif
+assets/banner4.gif
+assets/banner5.gif
+
+# Arquivos de upload grandes
+uploads/avatars/*.png
+uploads/avatars/*.jpg
+uploads/photos/*.png
+uploads/photos/*.jpg
+uploads/photos/*.webp
+
+# Arquivos do XAMPP (não necessários no repositório)
+disgaça/
+
+# Arquivos temporários
+*.tmp
+*.log
