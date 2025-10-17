@@ -1,0 +1,4 @@
+﻿DirectoryIndex index.html
+
+RewriteEngine On
+RewriteRule ^dashboard/?$ / [R=301,L]

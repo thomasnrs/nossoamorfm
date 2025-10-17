@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Nosso Amor FM | !DONAA❤️</title>
+  <meta name="description" content="Rádio dedicada ao meu amor Rafaela. Nosso Amor FM, 24h de amorzinho.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&family=Great+Vibes&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="icon" href="favicon.ico">
+  <meta name="theme-color" content="#ff4da6">
+</head>
+<body>
+  <header class="hero">
+    <img class="banner" src="assets/banner.gif" alt="Banner do amor">
+    <div class="overlay">
+      <h1 class="title"></h1>
+      <p class="subtitle">Radio dedicada a minha princesa ✨</p>
+    </div>
+  </header>
+
+  <main class="content">
+    <section class="avatars">
+      <figure class="avatar">
+        <img src="assets/avatar1.gif" alt="Avatar 1">
+        <figcaption>!JhonParker</figcaption>
+      </figure>
+      <div class="hearts" aria-hidden="true">💖💞💗💘</div>
+      <figure class="avatar">
+        <img src="assets/avatar2.gif" alt="Avatar 2">
+        <figcaption>!DONAA</figcaption>
+      </figure>
+    </section>
+
+    <section class="player-card">
+      <h2>Ao vivo agora</h2>
+      <p class="dedication">Furduncinho do Jhon dedicado pra você, mozão. Te amo! 🥰</p>
+
+      <div class="player">
+        <button id="playButton" class="btn primary" aria-label="Tocar">▶</button>
+        <button id="pauseButton" class="btn" aria-label="Pausar">⏸</button>
+        <div class="nowplaying">
+          <span id="statusDot" class="dot"></span>
+          <span id="statusText">Parado</span>
+        </div>
+      </div>
+
+      <div class="meta">
+        <span id="songTitle">—</span>
+        <span class="sep">•</span>
+        <span id="listeners">0 ouvintes</span>
+        <span class="sep">•</span>
+        <span id="siteViewers">0 no site</span>
+      </div>
+
+      <audio id="radio" preload="none" crossorigin="anonymous"></audio>
+
+      <div class="volume">
+        <input id="volume" type="range" min="0" max="1" step="0.01" value="0.8" aria-label="Volume">
+      </div>
+
+      <div class="tips">
+        <small>Se estiver com dificuldades de ouvir, acesse e escute pelo bot no nosso servidor <a href="https://discord.gg/uPSdBkCS6f" target="_blank" rel="noopener">ℕ𝕖𝕓𝕦𝕝𝕒 𝔽𝕣𝕚𝕖𝕟𝕕𝕤</a>.</small>
+      </div>
+    </section>
+
+    <div class="columns">
+    <section class="guestbook">
+      <h2>Recadinhos</h2>
+      <form id="recadoForm" class="card" enctype="multipart/form-data">
+        <div class="row">
+          <input type="text" name="name" placeholder="Seu nome" required oninput="this.value = this.value.replace(/[<>\"']/g, '')">
+          <span class="file">
+            <span class="fake-btn">Selecionar avatar</span>
+            <span class="file-name">(opcional)</span>
+            <input type="file" name="avatar" accept="image/*">
+          </span>
+          <input type="text" name="avatarUrl" placeholder="ou URL do avatar (opcional)" oninput="this.value = this.value.replace(/[<>\"']/g, '')">
+        </div>
+        <textarea name="message" rows="3" placeholder="Deixe seu recado" required oninput="this.value = this.value.replace(/[<>\"']/g, '')"></textarea>
+        <button class="btn primary" type="submit">Enviar recado</button>
+      </form>
+      <ul id="recadoList" class="recados"></ul>
+    </section>
+
+    <section class="photos">
+      <h2>Lembranças <span id="adminBtn" class="admin-btn">💞</span></h2>
+      <form id="photoForm" class="card" enctype="multipart/form-data">
+        <div class="row">
+          <input type="text" name="author" placeholder="Seu nome (opcional)" oninput="this.value = this.value.replace(/[<>\"']/g, '')">
+          <input type="text" name="caption" placeholder="Legenda (opcional)" oninput="this.value = this.value.replace(/[<>\"']/g, '')">
+          <span class="file">
+            <span class="fake-btn">Selecionar foto</span>
+            <span class="file-name">(ou preencha URL)</span>
+            <input type="file" name="photo" accept="image/*">
+          </span>
+          <input type="text" name="photoUrl" placeholder="URL da foto (opcional)" oninput="this.value = this.value.replace(/[<>\"']/g, '')">
+        </div>
+        <button class="btn" type="submit">Postar foto</button>
+      </form>
+       <div id="photoGrid" class="grid"></div>
+     </section>
+     </div>
+   </main>
+
+  <!-- Modal para visualizar fotos -->
+  <div id="photoModal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <img id="modalImage" src="" alt="">
+      <div class="modal-info">
+        <h3 id="modalAuthor"></h3>
+        <p id="modalCaption"></p>
+        <div class="comments-section">
+          <h4>Comentários</h4>
+          <form id="commentForm" class="comment-form">
+            <input type="hidden" id="commentPhotoId" name="photoId">
+            <div class="comment-input">
+              <input type="text" name="author" placeholder="Seu nome" required oninput="this.value = this.value.replace(/[<>\"']/g, '')">
+              <textarea name="comment" placeholder="Seu comentário" rows="2" required oninput="this.value = this.value.replace(/[<>\"']/g, '')"></textarea>
+              <button type="submit" class="btn primary">Comentar</button>
+            </div>
+          </form>
+          <ul id="commentsList" class="comments-list"></ul>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+
+  <!-- Admin login (escondido) - fora do modal -->
+  <div id="adminPanel" class="admin-panel" style="display: none;">
+    <h4>Admin Panel</h4>
+          <form id="adminForm">
+            <input type="text" name="login" placeholder="Login" required oninput="this.value = this.value.replace(/[<>\"']/g, '')">
+            <input type="password" name="password" placeholder="Senha" required oninput="this.value = this.value.replace(/[<>\"']/g, '')">
+            <button type="submit" class="btn outline">Login Admin</button>
+          </form>
+  </div>
+
+  <footer class="footer">
+    <p>Feito com ❤️ para nós dois. 15/09.</p>
+  </footer>
+
+  <script>
+    try {
+      if (location.protocol === 'https:' && location.hostname !== 'localhost' && location.hostname !== '127.0.0.1') {
+        localStorage.removeItem('radio.stream');
+      }
+    } catch (e) {}
+  </script>
+  <script src="js/script.js?v=5"></script>
+</body>
+</html>
+
